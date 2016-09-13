@@ -3,10 +3,16 @@
   "description": "A webapp version of the Julie Through The System curriculum",
   "version": "0.0.1",
   "main": "",
+  "scripts": {
+    "webpack-watch": "webpack -w",
+    "express-server": "node ./server/app.js",
+    "dev": "concurrent --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "mongodb": "2.2.x",
     "request": "2.73.x",
-    "async":"2.0.0-rc.6",
+    "async": "2.0.0-rc.6",
     "lodash": "4.13.x",
     "yargs": "4.8.x",
     "express": "4.14.x",
@@ -42,6 +48,7 @@
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "chunk-manifest-webpack-plugin": "0.1.0",
+    "concurrently": "^2.2.0",
     "coveralls": "^2.11.9",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^4.0.1",
@@ -88,4 +95,3 @@
     "webpack-manifest-plugin": "^1.0.1"
   }
 }
-
