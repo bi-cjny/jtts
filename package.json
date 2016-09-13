@@ -1,0 +1,15 @@
+{
+  "name": "JTTS",
+  "description": "A webapp version of the Julie Through The System curriculum",
+  "version": "0.0.1",
+  "main": "",
+  "dependencies": {
+    "mongodb": "2.2.x",
+    "request": "2.73.x",
+    "async":"2.0.0-rc.6",
+    "lodash": "4.13.x",
+    "yargs": "4.8.x",
+    "express": "4.14.x",
+    "jade": "1.11.x"
+  }
+}
