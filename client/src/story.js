@@ -1,10 +1,28 @@
 var story = {
+    initialSceneID:0,
     "scenes":[
+        {
+            "_id": -1,
+            "title": "You're done!",
+            "getChoices":function(){
+                return [
+                    {
+                        "_id": 0,
+                        "getText": function(history){
+                            return "Try again";
+                        },
+                        "getNextScene": function(history){
+                            return 0;
+                        }
+                    }
+                ];
+            }
+        },
         {
             "_id":0,
             "title": "Bus Stop",
             "getText": function(){
-                return "You have been stopped by the police. While you and your friends were waiting for the bus a fight broke out. A boy was beaten with a bat. Everyone ran but you. Proceed to ARREST and pick a card to find out what happens next.";
+                return "You have been stopped by the police. While you and your friends were waiting for the bus a fight broke out. A boy was beaten with a bat. Everyone ran but you.";
             },
             "getChoices":function(history){
                 return [
@@ -14,7 +32,7 @@ var story = {
                             return "Whew that was close! The police officer believed you when you said you were just waiting for the bus. You are home free. EXIT THE GAME!";
                         },
                         "getNextScene": function(history){
-                            return null;
+                            return -1;
                         }
                     },
                     {
@@ -23,7 +41,7 @@ var story = {
                             return "The police officer believed you were going home, but didn't believe that you weren't involved in the incident. He is giving you a citation and you will have to see a probation officer on a specific date. Proceed to CITATION and pick a card.";
                         },
                         "getNextScene": function(history){
-                            return 2;
+                            return 1;
                         }
                     },
                     {
@@ -49,7 +67,7 @@ var story = {
                             return "You showed up for your court date and you have never been in trouble before. You are going home without being put on probation. EXIT the game.";
                         },
                         "getNextScene": function(history){
-                            return null;
+                            return -1;
                         }
                     },
                     {
@@ -58,7 +76,7 @@ var story = {
                             return "You forgot to show up to court and because of that you now have a bench warrant. Head straight to DETENTION and pick the blue card.";
                         },
                         "getNextScene": function(history){
-                            return 3;
+                            return ;
                         }
                     }
                 ]
@@ -68,7 +86,7 @@ var story = {
             "_id":2,
             "title": "Detention",
             "getChoices": function(history){
-                var lastStep = history[history.length];
+                var lastStep = history[history.length-1];
                 var scene = lastStep.scene;
                 var choice = lastStep.choice;
 
@@ -161,7 +179,7 @@ var story = {
                             return "You scored LOW on the RAI. The probation officer knows you have never been arrested before. After talking to your guardian he realizes that you are a good kid who was at the wrong place at the wrong time. You are being released to your guardian. EXIT THE GAME";
                         },
                         "getNextScene": function(history){
-                            return null;
+                            return -1;
                         }
                     },
                     {
@@ -189,7 +207,7 @@ var story = {
             "_id":4,
             "title": "Detention Hearing",
             "getChoices": function(history){
-                var lastStep = history[history.length];
+                var lastStep = history[history.length-1];
                 var scene = lastStep.scene;
                 var choice = lastStep.choice;
 
@@ -200,7 +218,7 @@ var story = {
                             return "You finally see the judge. She determines that there is no evidence to support the charges and thinks you were at the wrong place at the wrong time. The Judge is releasing you to your guardian. EXIT THE GAME"
                         },
                         "getNextScene": function(history){
-                            return null
+                            return -1;
                         }
                     },
                     {
@@ -229,7 +247,7 @@ var story = {
                             return "You go before the judge and she believes you forgot about showing up for your court hearing. Your case was going to be dismissed anyway, so you are free to go. EXIT THE GAME!";
                         },
                         "getNextScene": function(history){
-                            return null;
+                            return -1;
                         }
                     })
                 }
@@ -241,7 +259,7 @@ var story = {
             "_id": 5,
             "title": "Alternative to Detention",
             "getChoices": function (history) {
-                var lastStep = history[history.length];
+                var lastStep = history[history.length-1];
                 var scene = lastStep.scene;
                 var choice = lastStep.choice;
 
@@ -286,7 +304,7 @@ var story = {
             "_id": 6,
             "title": "Probation",
             "getChoices": function (history) {
-                var lastStep = history[history.length];
+                var lastStep = history[history.length-1];
                 var scene = lastStep.scene;
                 var choice = lastStep.choice;
 
@@ -299,7 +317,7 @@ var story = {
                             return "Your Probation Officer doesn’t want to see you in trouble again. You will be on probation for the next six months. STAY HERE UNTIL 1 PERSON PASSES YOU At this point you have successfully completed your probation. EXIT THE GAME";
                         },
                         "getNextScene": function(history){
-                            return null;
+                            return -1;
                         }
                     })
                 } else {
@@ -310,7 +328,7 @@ var story = {
                                 return "You have been going to school everyday; coming home by curfew; checking in with your Probation Officer; and you’ve been attending your Alternative to Detention placement. You have been doing great and have completed probation. STAY OUT OF TROUBLE AND EXIT THE GAME!";
                             },
                             "getNextScene": function(history){
-                                return null;
+                                return -1;
                             }
                         },
                         {
@@ -331,7 +349,7 @@ var story = {
             "_id": 7,
             "title": "Adjudication Hearing",
             "getChoices": function (history) {
-                var lastStep = history[history.length];
+                var lastStep = history[history.length-1];
                 var scene = lastStep.scene;
                 var choice = lastStep.choice;
 
@@ -343,7 +361,7 @@ var story = {
                             return "The judge dismisses your case. 'Make sure you don’t get into any more trouble!' EXIT THE GAME";
                         },
                         "getNextScene": function(history){
-                            return null;
+                            return -1;
                         }
                     });
                 } else {
@@ -354,7 +372,7 @@ var story = {
                                 return "The judge dismisses your case. 'Make sure you don’t get into any more trouble!' EXIT THE GAME";
                             },
                             "getNextScene": function(history){
-                                return null;
+                                return -1;
                             }
                         },
                         {
@@ -401,7 +419,7 @@ var story = {
                             return "This is not your first time being in trouble. The judge believes you should be a ward of the court. This means that the court (not your parents or guardian) will make decisions about your well-being for a while. The judge has decided you should go to a group home. You are awaiting placement. YOU MUST REMAIN STANDING UNTIL EVERYONE ELSE HAS COMPLETED THE GAME THEN YOU MAY EXIT THE GAME.";
                         },
                         "getNextScene": function(history){
-                            return null;
+                            return -1;
                         }
                     },
                     {
@@ -427,7 +445,7 @@ var story = {
                             return "YOU ARE BEING INCARCERATED! STAY IN THIS SPOT UNTIL EVERYONE ELSE HAS EXITED THE GAME. You have lost your freedom.";
                         },
                         "getNextScene": function(history){
-                            return null;
+                            return -1;
                         }
                     }
                 ];

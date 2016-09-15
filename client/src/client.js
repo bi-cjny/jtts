@@ -1,48 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { story } from 'story.js';
+import { story } from './story.js';
 
 
 var reactMountRootId = 'app';
 
 var App = React.createClass({
     getInitialState: function(){
+        var initalHistory = [];
+        var initialChoices = story.scenes.find(function(scene){
+            return scene._id == story.initialSceneID;
+        }).getChoices(initalHistory);
         return {
             "story": story,
-            "currentSceneID": 0,
-            "choices": this.getChoices(),
-            "history": []
+            "currentSceneID": story.initialSceneID,
+            "choices": initialChoices,
+            "history": initalHistory
         };
     },
     getScene: function(id){
-        this.state.story.scenes.find(function(scene){
+        return this.state.story.scenes.find(function(scene){
             return scene._id == id;
         });
     },
     getCurrentScene : function(){
         return this.getScene(this.state.currentSceneID);
     },
-    getChoicesFromCurrentScene: function(){
-        var scene = this.getCurrentScene();
-        return scene.getChoices(this.state.history);
-    },
-    getChoiceFromCurrentScene: function(choiceID){
-        var choices = this.getChoicesFromCurrentScene();
-        return choices.find(function(choice){
-            return choice._id = choiceID;
+    getChoice: function(choiceID){
+        return this.state.choices.find(function(choice){
+            return choice._id == choiceID;
         });
     },
     handleChoiceSelection: function(choiceID){
-        var scene = this.getCurrentScene();
-        var choice = this.getChoiceFromCurrentScene(choiceID);
-        var history = this.state.history.push({
-            "scene": scene._id,
-            "choice": choice._id
-        });
-        this.setState({
-            "story": this.state.story,
-            "currentSceneID": choice.getNextScene(this.state.history),
-            "history": history
+        var choice = this.getChoice(choiceID);
+        var nextScene = this.getScene(choice.getNextScene(this.state.history));
+        this.setState(function(previousState){
+            var updatedHistory = previousState.history.concat({
+                "scene": this.state.currentSceneID,
+                "choice": choiceID
+            });
+            return {
+                "currentSceneID": nextScene._id,
+                "history": updatedHistory,
+                "choices": nextScene.getChoices(updatedHistory)
+            }
         });
     },
     render: function(){
@@ -53,6 +54,7 @@ var App = React.createClass({
         }
         return(
             <div className="app">
+                <h1>{this.getCurrentScene().title}</h1>
                 <Visualization />
                 <Exposition text={ sceneText } />
                 <ChoiceList choices={this.state.choices}
@@ -84,14 +86,18 @@ var Exposition = React.createClass({
 
 var ChoiceList = React.createClass({
     render: function(){
-        var choiceNodes = this.props.choices.map(function(choice){
-            return(
-                <Choice data={choice} />
-            )
+        var choiceNodes = [];
+        var onChoiceSelect = this.props.onChoiceSelect;
+        this.props.choices.forEach(function(choice){
+            choiceNodes.push(
+                <Choice data={choice} key={choice._id} onChoiceSelect={onChoiceSelect} />
+            );
         });
         return (
             <div className="choiceList">
-                {choiceNodes}
+                <ul>
+                    {choiceNodes}
+                </ul>
             </div>
         );
     }
@@ -99,10 +105,14 @@ var ChoiceList = React.createClass({
 
 var Choice = React.createClass({
     render: function(){
+        var onClick = (function(e){
+            e.preventDefault();
+            return this.props.onChoiceSelect(this.props.data._id);
+        }).bind(this);
         return(
-            <div className="choice">
-                {this.props.data.text}
-            </div>
+            <li className="choice" onClick={onClick}>
+                {this.props.data.getText()}
+            </li>
         );
     }
 });
