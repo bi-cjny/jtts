@@ -1,7 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+var reactMountRootId = 'app';
+
+var App = React.createClass({
+    render: function(){
+        return(
+            <div className="app">WTF</div>
+        );
+    }
+});
+
 ReactDOM.render(
-<h1>Hello, world!</h1>,
-    document.getElementById('root')
+    <App />,
+    document.getElementById(reactMountRootId)
 );
