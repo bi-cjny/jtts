@@ -1,43 +1,68 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { story } from 'story.js';
+
 
 var reactMountRootId = 'app';
 
 var App = React.createClass({
     getInitialState: function(){
         return {
-            currentText: "You got arrested at a bus stop :(",
-            currentChoices: [
-                {"text": "Shit on the ground"},
-                {"text": "Go quietly"},
-                {"text": "Play dead"}
-            ]
+            "story": story,
+            "currentSceneID": 0,
+            "choices": this.getChoices(),
+            "history": []
         };
     },
-    componentDidMount: function(){
-        this.loadStoryFromServer();
+    getScene: function(id){
+        this.state.story.scenes.find(function(scene){
+            return scene._id == id;
+        });
     },
-    loadStoryFromServer: function(){
-        this.state.story = {};
+    getCurrentScene : function(){
+        return this.getScene(this.state.currentSceneID);
+    },
+    getChoicesFromCurrentScene: function(){
+        var scene = this.getCurrentScene();
+        return scene.getChoices(this.state.history);
+    },
+    getChoiceFromCurrentScene: function(choiceID){
+        var choices = this.getChoicesFromCurrentScene();
+        return choices.find(function(choice){
+            return choice._id = choiceID;
+        });
+    },
+    handleChoiceSelection: function(choiceID){
+        var scene = this.getCurrentScene();
+        var choice = this.getChoiceFromCurrentScene(choiceID);
+        var history = this.state.history.push({
+            "scene": scene._id,
+            "choice": choice._id
+        });
+        this.setState({
+            "story": this.state.story,
+            "currentSceneID": choice.getNextScene(this.state.history),
+            "history": history
+        });
     },
     render: function(){
+        var scene = this.getCurrentScene();
+        var sceneText = "";
+        if(scene.getText){
+            sceneText = scene.getText()
+        }
         return(
             <div className="app">
                 <Visualization />
-                <Exposition text={this.state.currentText} />
-                <ChoiceList choices={this.state.currentChoices} />
+                <Exposition text={ sceneText } />
+                <ChoiceList choices={this.state.choices}
+                            onChoiceSelect={this.handleChoiceSelection} />
             </div>
         );
     }
 });
 
 var Visualization = React.createClass({
-    getInitialState: function(){
-        return {};
-    },
-    componentDidMount: function(){
-
-    },
     render: function(){
         return(
             <div className="visualization">
