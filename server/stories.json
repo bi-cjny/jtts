@@ -1,0 +1,15 @@
+{
+  "jtts":{
+    "scenes":[
+      {
+        "_id":0,
+        "title": "Bus Stop",
+        "choices":[
+          {
+            "text":"Proceed to"
+          }
+        ]
+      }
+    ]
+  }
+}
