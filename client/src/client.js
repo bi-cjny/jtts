@@ -32,17 +32,23 @@ var App = React.createClass({
         });
     },
     handleChoiceSelection: function(choiceID){
-        var choice = this.getChoice(choiceID);
-        var nextScene = this.getScene(choice.getNextScene(this.state.history));
         this.setState(function(previousState){
+            var choice = this.getChoice(choiceID);
+            var nextScene = this.getScene(choice.getNextScene(this.state.history));
             var updatedHistory = previousState.history.concat({
                 "scene": this.state.currentSceneID,
-                "choice": choiceID
+                "choice": choiceID,
+                "choiceText": choice.getText(previousState.history)
             });
+            var nextChoices = nextScene.getChoices(updatedHistory);
+            console.log(
+                "choices for the scene you're looking at, or should be: ",
+                nextChoices.map(function(choice){return choice.getText(updatedHistory)})
+            );
             return {
                 "currentSceneID": nextScene._id,
                 "history": updatedHistory,
-                "choices": nextScene.getChoices(updatedHistory)
+                "choices": nextChoices
             }
         });
     },
@@ -59,6 +65,7 @@ var App = React.createClass({
                 <Exposition text={ sceneText } />
                 <ChoiceList choices={this.state.choices}
                             onChoiceSelect={this.handleChoiceSelection} />
+                <History data={ this.state.history }/>
             </div>
         );
     }
@@ -95,6 +102,7 @@ var ChoiceList = React.createClass({
         });
         return (
             <div className="choiceList">
+                <h2>Choices</h2>
                 <ul>
                     {choiceNodes}
                 </ul>
@@ -113,6 +121,24 @@ var Choice = React.createClass({
             <li className="choice" onClick={onClick}>
                 {this.props.data.getText()}
             </li>
+        );
+    }
+});
+
+var History = React.createClass({
+    render: function(){
+        var itemNodes = this.props.data.map(function(step){
+            return (
+                <li>{step.choiceText}</li>
+            );
+        });
+        return(
+            <div className="history">
+                <h2>History</h2>
+                <ul>
+                    {itemNodes}
+                </ul>
+            </div>
         );
     }
 });

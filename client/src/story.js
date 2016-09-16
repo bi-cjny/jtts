@@ -76,7 +76,7 @@ var story = {
                             return "You forgot to show up to court and because of that you now have a bench warrant. Head straight to DETENTION and pick the blue card.";
                         },
                         "getNextScene": function(history){
-                            return ;
+                            return 2;
                         }
                     }
                 ]
@@ -86,12 +86,13 @@ var story = {
             "_id":2,
             "title": "Detention",
             "getChoices": function(history){
+                console.log("trying to get detention choices");
                 var lastStep = history[history.length-1];
-                var scene = lastStep.scene;
-                var choice = lastStep.choice;
+                var sceneID = lastStep.scene;
+                var choiceID = lastStep.choice;
 
                 var choices = [];
-                if(scene._id==1 && choice._id==1){
+                if(sceneID==1 && choiceID==1){
                     choices.push({
                         "_id":0,
                         "getText": function(history){
@@ -101,8 +102,8 @@ var story = {
                             return 4;
                         }
                     })
-                } else if((scene._id==2 && choice._id==5) ||
-                    (scene._id==3 && choice._id==2)){
+                } else if((sceneID==2 && choiceID==5) ||
+                    (sceneID==3 && choiceID==2)){
                     choices.push({
                         "_id":1,
                         "getText": function(history){
@@ -112,7 +113,7 @@ var story = {
                             return 4;
                         }
                     });
-                } else if(scene._id==6 && choice._id==1){
+                } else if(sceneID==6 && choiceID==1){
                     choices.push({
                         "_id":2,
                         "getText": function(history){
@@ -122,7 +123,7 @@ var story = {
                             return 6;
                         }
                     });
-                } else if(scene._id==4 && choice._id==3){
+                } else if(sceneID==4 && choiceID==3){
                     choices.push({
                         "_id":3,
                         "getText": function(history){
@@ -132,7 +133,7 @@ var story = {
                             return 7;
                         }
                     });
-                } else if(scene._id==8 && choice._id==1){
+                } else if(sceneID==8 && choiceID==1){
                     choices.push({
                         "_id":4,
                         "getText": function(history){
@@ -208,8 +209,8 @@ var story = {
             "title": "Detention Hearing",
             "getChoices": function(history){
                 var lastStep = history[history.length-1];
-                var scene = lastStep.scene;
-                var choice = lastStep.choice;
+                var sceneID = lastStep.scene;
+                var choiceID = lastStep.choice;
 
                 var choices = [
                     {
@@ -240,7 +241,7 @@ var story = {
                         }
                     }
                 ];
-                if(scene._id != 2 && choice._id != 1){
+                if(sceneID != 2 && choiceID != 1){
                     choices.push({
                         "_id": 0,
                         "getText": function(history){
@@ -260,12 +261,12 @@ var story = {
             "title": "Alternative to Detention",
             "getChoices": function (history) {
                 var lastStep = history[history.length-1];
-                var scene = lastStep.scene;
-                var choice = lastStep.choice;
+                var sceneID = lastStep.scene;
+                var choiceID = lastStep.choice;
 
                 var choices = [];
-                if((scene._id==4 && choice._id==2) ||
-                    (scene._id==3 && choice._id==1)){
+                if((sceneID==4 && choiceID==2) ||
+                    (sceneID==3 && choiceID==1)){
                     choices.push({
                         "_id": 0,
                         "getText": function(history){
@@ -305,12 +306,12 @@ var story = {
             "title": "Probation",
             "getChoices": function (history) {
                 var lastStep = history[history.length-1];
-                var scene = lastStep.scene;
-                var choice = lastStep.choice;
+                var sceneID = lastStep.scene;
+                var choiceID = lastStep.choice;
 
                 var choices = [];
-                if((scene._id==2 && choice._id==2) ||
-                    (scene._id==2 && choice._id==4)){
+                if((sceneID==2 && choiceID==2) ||
+                    (sceneID==2 && choiceID==4)){
                     choices.push({
                         "_id": 2,
                         "getText": function(history){
@@ -350,11 +351,11 @@ var story = {
             "title": "Adjudication Hearing",
             "getChoices": function (history) {
                 var lastStep = history[history.length-1];
-                var scene = lastStep.scene;
-                var choice = lastStep.choice;
+                var sceneID = lastStep.scene;
+                var choiceID = lastStep.choice;
 
                 var choices = [];
-                if(scene._id == 5 && choice._id == 0){
+                if(sceneID == 5 && choiceID == 0){
                     choices.push({
                         "_id": 0,
                         "getText": function(history){
@@ -365,7 +366,7 @@ var story = {
                         }
                     });
                 } else {
-                    choices.push([
+                    choices.push(
                         {
                             "_id": 0,
                             "getText": function(history){
@@ -384,9 +385,8 @@ var story = {
                                 return 8;
                             }
                         }
-                    ])
+                    )
                 }
-
                 return choices;
             }
         },
