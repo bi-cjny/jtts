@@ -1,0 +1,12 @@
+.choice{
+    cursor: pointer;
+    color: #0000cc;
+}
+
+.choice:hover{
+    color: #0074D9;
+}
+
+.choice:active{
+    color: #000066;
+}

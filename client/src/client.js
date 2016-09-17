@@ -114,7 +114,7 @@ var Choice = React.createClass({
             return this.props.onChoiceSelect(this.props.data._id);
         }).bind(this);
         return(
-            <li className="choice" onClick={onClick}>
+            <li className="choice" class="choice" onClick={onClick}>
                 {this.props.data.getText()}
             </li>
         );
