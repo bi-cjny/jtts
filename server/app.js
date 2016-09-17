@@ -22,6 +22,6 @@ app.get('/stories/:id', function(req, res){
     res.json(story);
 });
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
     console.log('express server listening on :3000');
 });
