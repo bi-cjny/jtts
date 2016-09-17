@@ -10,7 +10,3 @@ ______/\\\\\\\\\\\__/\\\\\\\\\\\\\\\__/\\\\\\\\\\\\\\\_____/\\\\\\\\\\\___
         __\/////////_____________\///______________\///__________\///////////_____
 </pre>
 
-# Differences from the Card Game
-
-* The Bus Stop and Arrest cards have been combined into a single scene.
-
