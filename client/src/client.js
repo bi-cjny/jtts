@@ -41,10 +41,6 @@ var App = React.createClass({
                 "choiceText": choice.getText(previousState.history)
             });
             var nextChoices = nextScene.getChoices(updatedHistory);
-            console.log(
-                "choices for the scene you're looking at, or should be: ",
-                nextChoices.map(function(choice){return choice.getText(updatedHistory)})
-            );
             return {
                 "currentSceneID": nextScene._id,
                 "history": updatedHistory,

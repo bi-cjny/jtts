@@ -86,7 +86,6 @@ var story = {
             "_id":2,
             "title": "Detention",
             "getChoices": function(history){
-                console.log("trying to get detention choices");
                 var lastStep = history[history.length-1];
                 var sceneID = lastStep.scene;
                 var choiceID = lastStep.choice;
