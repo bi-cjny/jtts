@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "build": "webpack --config ./webpack.config.js --progress --colors",
-    "start": "node ./server/app.js",
+    "start": "npm run build; node ./server/app.js",
     "webpack-watch": "webpack -w",
     "express-server": "node ./server/app.js",
     "dev": "concurrent --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
