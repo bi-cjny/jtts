@@ -153,7 +153,7 @@ var story = {
                                 return "Too bad for you! Your county doesn't have a Risk Assessment Instrument (RAI). You are waiting for your detention hearing. Pick up the blue card.";
                             },
                             "getNextScene": function(history){
-                                return 3;
+                                return 2;
                             }
                         },
                         {
