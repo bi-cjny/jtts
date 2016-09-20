@@ -327,7 +327,7 @@ var story = {
                         }
                     })
                 } else {
-                    choices.push([
+                    choices.push(
                         {
                             "_id":0,
                             "getText": function(history){
@@ -346,7 +346,7 @@ var story = {
                                 return 2;
                             }
                         }
-                    ])
+                    )
                 }
                 return choices;
             }
