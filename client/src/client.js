@@ -50,15 +50,19 @@ var App = React.createClass({
     },
     render: function(){
         var scene = this.getCurrentScene();
-        var sceneText = "";
+        console.log(this.state.history);
+        var lastStep = this.state.history[this.state.history.length-1];
+        var sceneText = lastStep ? lastStep.choiceText : "";
         if(scene.getText){
             sceneText = scene.getText()
         }
         return(
-            <div className="app">
+            <div className="app container">
                 <h1>{this.getCurrentScene().title}</h1>
-                <Visualization sceneImg={this.getCurrentScene().bgImage} />
-                <Exposition text={ sceneText } />
+                <div className="row">
+                    <Exposition text={ sceneText } />
+                    <Visualization sceneImg={this.getCurrentScene().bgImage} />
+                </div>
                 <ChoiceList choices={this.state.choices}
                             onChoiceSelect={this.handleChoiceSelection} />
                 <History data={ this.state.history }/>
@@ -75,7 +79,7 @@ var Visualization = React.createClass({
             sceneImg = defaultImg;
         }
         return(
-            <div className="visualization" class="visualization">
+            <div className="visualization col-md-8">
                 <img src={sceneImg} />
             </div>
         );
@@ -85,7 +89,7 @@ var Visualization = React.createClass({
 var Exposition = React.createClass({
     render: function(){
         return (
-            <div className="exposition">
+            <div className="exposition col-md-4">
                 {this.props.text}
             </div>
         );
@@ -102,7 +106,7 @@ var ChoiceList = React.createClass({
             );
         });
         return (
-            <div className="choiceList">
+            <div className="choiceList row">
                 <h2>Choices</h2>
                 <ul>
                     {choiceNodes}
@@ -119,7 +123,7 @@ var Choice = React.createClass({
             return this.props.onChoiceSelect(this.props.data._id);
         }).bind(this);
         return(
-            <li className="choice" class="choice" onClick={onClick}>
+            <li className="choice" onClick={onClick}>
                 {this.props.data.getText()}
             </li>
         );
@@ -134,7 +138,7 @@ var History = React.createClass({
             );
         });
         return(
-            <div className="history">
+            <div className="history row">
                 <h2>History</h2>
                 <ul>
                     {itemNodes}

@@ -1,3 +1,7 @@
+.app{
+    max-width: 100%;
+}
+
 .choice{
     cursor: pointer;
     color: #0000cc;
@@ -12,5 +16,9 @@
 }
 
 .visualization img{
-    max-width: 400px;
+    max-width: 100%;
+}
+
+.exposition{
+    font-size: 2em;
 }
