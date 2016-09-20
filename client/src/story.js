@@ -262,7 +262,7 @@ var story = {
         {
             "_id": 5,
             "title": "Alternative to Detention",
-            "bgImage": "",
+            "bgImage": "Alternate_to_.jpg",
             "getChoices": function (history) {
                 var lastStep = history[history.length-1];
                 var sceneID = lastStep.scene;
