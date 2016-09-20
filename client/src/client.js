@@ -57,7 +57,7 @@ var App = React.createClass({
         return(
             <div className="app">
                 <h1>{this.getCurrentScene().title}</h1>
-                <Visualization />
+                <Visualization sceneImg={this.getCurrentScene().image} />
                 <Exposition text={ sceneText } />
                 <ChoiceList choices={this.state.choices}
                             onChoiceSelect={this.handleChoiceSelection} />
@@ -69,9 +69,14 @@ var App = React.createClass({
 
 var Visualization = React.createClass({
     render: function(){
+        var defaultImg = "http://nemanjakovacevic.net/wp-content/uploads/2013/07/placeholder.png";
+        var sceneImg = "/images/"+this.props.sceneImg;
+        if(this.props.sceneImg==""){
+            sceneImg = defaultImg;
+        }
         return(
-            <div className="visualization">
-                <img src="http://nemanjakovacevic.net/wp-content/uploads/2013/07/placeholder.png" />
+            <div className="visualization" class="visualization">
+                <img src={sceneImg} />
             </div>
         );
     }

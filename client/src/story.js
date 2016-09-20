@@ -4,6 +4,7 @@ var story = {
         {
             "_id": -1,
             "title": "You're done!",
+            "image":"",
             "getChoices":function(){
                 return [
                     {
@@ -21,6 +22,7 @@ var story = {
         {
             "_id":0,
             "title": "Bus Stop",
+            "image": "Bus_Stop.jpg",
             "getText": function(){
                 return "You have been stopped by the police. While you and your friends were waiting for the bus a fight broke out. A boy was beaten with a bat. Everyone ran but you.";
             },
@@ -59,6 +61,7 @@ var story = {
         {
             "_id":1,
             "title": "Citation",
+            "image": "citation_.jpg",
             "getChoices":function(history){
                 return [
                     {
@@ -85,6 +88,7 @@ var story = {
         {
             "_id":2,
             "title": "Detention",
+            "image": "detention.jpg",
             "getChoices": function(history){
                 var lastStep = history[history.length-1];
                 var sceneID = lastStep.scene;
@@ -171,6 +175,7 @@ var story = {
         {
             "_id":3,
             "title": "Risk Assessment",
+            "image": "",
             "getChoices": function(history){
                 return [
                     {
@@ -206,6 +211,7 @@ var story = {
         {
             "_id":4,
             "title": "Detention Hearing",
+            "image":"Detention_hearing.jpg",
             "getChoices": function(history){
                 var lastStep = history[history.length-1];
                 var sceneID = lastStep.scene;
@@ -258,6 +264,7 @@ var story = {
         {
             "_id": 5,
             "title": "Alternative to Detention",
+            "image": "",
             "getChoices": function (history) {
                 var lastStep = history[history.length-1];
                 var sceneID = lastStep.scene;
@@ -303,6 +310,7 @@ var story = {
         {
             "_id": 6,
             "title": "Probation",
+            "image": "detention.jpg",
             "getChoices": function (history) {
                 var lastStep = history[history.length-1];
                 var sceneID = lastStep.scene;
@@ -348,6 +356,7 @@ var story = {
         {
             "_id": 7,
             "title": "Adjudication Hearing",
+            "image": "Court_w_gavel.jpg",
             "getChoices": function (history) {
                 var lastStep = history[history.length-1];
                 var sceneID = lastStep.scene;
@@ -392,6 +401,7 @@ var story = {
         {
             "_id": 8,
             "title": "Disposition Hearing",
+            "image": "Disposition_hearing.jpg",
             "getChoices": function(history){
                 return [
                     {
@@ -436,6 +446,7 @@ var story = {
         {
             "_id": 9,
             "title": "Incarceration",
+            "image": "Cell_resketch2.jpg",
             "getChoices": function(history) {
                 return [
                     {
