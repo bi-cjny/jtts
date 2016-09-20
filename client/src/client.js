@@ -57,7 +57,7 @@ var App = React.createClass({
         return(
             <div className="app">
                 <h1>{this.getCurrentScene().title}</h1>
-                <Visualization sceneImg={this.getCurrentScene().image} />
+                <Visualization sceneImg={this.getCurrentScene().bgImage} />
                 <Exposition text={ sceneText } />
                 <ChoiceList choices={this.state.choices}
                             onChoiceSelect={this.handleChoiceSelection} />
