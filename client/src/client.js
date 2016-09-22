@@ -50,7 +50,6 @@ var App = React.createClass({
     },
     render: function(){
         var scene = this.getCurrentScene();
-        console.log(this.state.history);
         var lastStep = this.state.history[this.state.history.length-1];
         var sceneText = lastStep ? lastStep.choiceText : "";
         if(scene.getText){
@@ -79,7 +78,7 @@ var Visualization = React.createClass({
             sceneImg = defaultImg;
         }
         return(
-            <div className="visualization col-md-8">
+            <div className="visualization col-md-6">
                 <img src={sceneImg} />
             </div>
         );
@@ -89,7 +88,7 @@ var Visualization = React.createClass({
 var Exposition = React.createClass({
     render: function(){
         return (
-            <div className="exposition col-md-4">
+            <div className="exposition col-md-6">
                 {this.props.text}
             </div>
         );

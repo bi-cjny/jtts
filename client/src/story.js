@@ -31,7 +31,7 @@ var story = {
                     {
                         "_id":0,
                         "getText": function(history){
-                            return "Whew that was close! The police officer believed you when you said you were just waiting for the bus. You are home free. EXIT THE GAME!";
+                            return "Whew that was close! The police officer believed you when you said you were just waiting for the bus. You are home free!";
                         },
                         "getNextScene": function(history){
                             return -1;
@@ -40,7 +40,7 @@ var story = {
                     {
                         "_id":1,
                         "getText": function(history){
-                            return "The police officer believed you were going home, but didn't believe that you weren't involved in the incident. He is giving you a citation and you will have to see a probation officer on a specific date. Proceed to CITATION and pick a card.";
+                            return "The police officer believed you were going home, but didn't believe that you weren't involved in the incident. He is giving you a citation and you will have to see a probation officer on a specific date.";
                         },
                         "getNextScene": function(history){
                             return 1;
@@ -49,7 +49,7 @@ var story = {
                     {
                         "_id":2,
                         "getText": function(history){
-                            return "The police officer asked you to identify yourself and he recognized your last name. He knows your brother and thinks he is a troublemaker and that you are too! You are being detained. Proceed to DETENTION and pick any card except blue.";
+                            return "The police officer asked you to identify yourself and he recognized your last name. He knows your brother and thinks he is a troublemaker and that you are too! You are being detained.";
                         },
                         "getNextScene": function(history){
                             return 2;
@@ -67,7 +67,7 @@ var story = {
                     {
                         "_id":0,
                         "getText": function(history){
-                            return "You showed up for your court date and you have never been in trouble before. You are going home without being put on probation. EXIT the game.";
+                            return "You showed up for your court date and you have never been in trouble before. You are going home without being put on probation.";
                         },
                         "getNextScene": function(history){
                             return -1;
@@ -76,7 +76,7 @@ var story = {
                     {
                         "_id":1,
                         "getText": function(history){
-                            return "You forgot to show up to court and because of that you now have a bench warrant. Head straight to DETENTION and pick the blue card.";
+                            return "You forgot to show up to court and because of that you now have a Bench Warrant. You are being detained until your detention hearing!";
                         },
                         "getNextScene": function(history){
                             return 2;
@@ -98,7 +98,7 @@ var story = {
                     choices.push({
                         "_id":0,
                         "getText": function(history){
-                            return "You're here because of a BENCH WARRANT: PROCEED TO DETENTION HEARING";
+                            return "Since you've got a Bench Warrant, you must appear before a judge at your Detention Hearing.";
                         },
                         "getNextScene": function(history){
                             return 4;
@@ -219,7 +219,7 @@ var story = {
                     {
                         "_id": 1,
                         "getText": function(history){
-                            return "You finally see the judge. She determines that there is no evidence to support the charges and thinks you were at the wrong place at the wrong time. The Judge is releasing you to your guardian. EXIT THE GAME"
+                            return "The judge determines that there is no evidence to support the charges and thinks you were at the wrong place at the wrong time. The Judge is releasing you to your guardian."
                         },
                         "getNextScene": function(history){
                             return -1;
@@ -228,7 +228,7 @@ var story = {
                     {
                         "_id": 2,
                         "getText": function(history){
-                            return "The judge decides to release you to an ALTERNATIVE TO DETENTION program because she feels you need supervision. PROCEED TO ALTERNATIVE TO DETENTION AND PICK THE ORANGE CARD";
+                            return "The judge decides to release you to an ALTERNATIVE TO DETENTION program because she feels you need supervision.";
                         },
                         "getNextScene": function(history){
                             return 5;
@@ -237,7 +237,7 @@ var story = {
                     {
                         "_id": 3,
                         "getText": function(history){
-                            return "You finally see the judge. She has decided that you may not show up to your next court appearance. You will stay in detention until your adjudication hearing. HEAD TO DETENTION AND PICK THE BLUE CARD";
+                            return "The judges decides that you may not show up to your next court appearance. You will stay in DETENTION until your adjudication hearing.";
                         },
                         "getNextScene": function(history){
                             return 2;
@@ -248,7 +248,7 @@ var story = {
                     choices.push({
                         "_id": 0,
                         "getText": function(history){
-                            return "You go before the judge and she believes you forgot about showing up for your court hearing. Your case was going to be dismissed anyway, so you are free to go. EXIT THE GAME!";
+                            return "The judge believes you forgot about showing up for your court hearing. Your case was going to be dismissed anyway, so you are free to go.";
                         },
                         "getNextScene": function(history){
                             return -1;
