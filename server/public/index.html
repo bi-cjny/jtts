@@ -103,23 +103,23 @@ Click a button to find out what they&#39;ve decided!
 [[Button 3-&gt;Sentenced Ward of the Court]]
 [[Button 4-&gt;Sentenced Incarceration]]&lt;/div&gt;
 &lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="13" name="Violated Probation" tags="" position="1429,228">&lt;div class=&quot;sceneText&quot;&gt;{
-(if:$probationDayCount is $probationMax)[
-(set: $probationDayCount to it+1)You wake up in a cell.($probationMax - $probationDayCount) more days until your initial probation is over. 
+<tw-passagedata pid="13" name="Violated Probation" tags="" position="1429,228">(set: $probationDayCount to it+1)&lt;div class=&quot;sceneImage&quot;&gt;&lt;img style=&quot;max-width:400px&quot; src=&quot;http://i.imgur.com/tbh0O9r.png&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sceneText&quot;&gt;{
+(if:$probationDayCount is not $probationMax)[
+You wake up in a cell. (text: $probationMax - $probationDayCount) more days until your initial probation is over. 
 ](else:)[
 You&#39;re finally out of Detention! But your Probation Officer doesn’t want to see you in trouble again. You will be on probation for the next six months... Maybe try to play it safe next time.
 ]
 }
 
 {
-(if:$probationDayCount is $probationMax)[
-[[If only you had stayed in school, you could be waking up in your own bed. test-&gt;Violated Probation]]
+(if:$probationDayCount is not $probationMax)[
+[[If only you had stayed in school, you could be waking up in your own bed.-&gt;Violated Probation]]
 ](else:)[
 [[Try Again-&gt;Start]]
 ]
 }
 &lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="14" name="Probation School Game" tags="" position="1414,718">(set: $probationDayCount to it+1)&lt;div class=&quot;sceneText&quot;&gt;You wake up on day $probationDayCount of probation.
+<tw-passagedata pid="14" name="Probation School Game" tags="" position="1369,645">(set: $probationDayCount to it+1)&lt;div class=&quot;sceneText&quot;&gt;You wake up on day $probationDayCount of probation.
 
 {
 (if: $probationDayCount is $probationMax)[
@@ -128,20 +128,13 @@ You&#39;re finally out of Detention! But your Probation Officer doesn’t want t
 [[Go to school-&gt;Probation School Game]]
 ]
 }
-
-{
-(if: $probationDayCount is $probationMax)[
-[[Skip today-&gt;Completed Probation]]
-](else:)[
-[[Skip today(set:$skipped to true)-&gt;Completed Probation]]
-]
-}
+[[Skip school-&gt;Skipped Probation]]
 &lt;/div&gt;</tw-passagedata>
 <tw-passagedata pid="15" name="Completed Probation" tags="" position="1424,506">&lt;div class=&quot;sceneText&quot;&gt;{
 (if: $skipped)[
 You VIOLATED PROBATION by skipping school a couple of times last week. Your Probation Officer is not happy. 
 ](else:)[
-You have been going to school everyday; coming home by curfew; checking in with your Probation Officer; and you’ve been attending your Alternative to Detention placement. You have been doing great and have completed probation.
+You have been going to school everyday; coming home by curfew; checking in with your Probation Officer. You have been doing great and have completed probation.
 ]
 }
 
@@ -189,7 +182,7 @@ If you&#39;ve played before, &lt;a href=&quot;https://www.surveymonkey.com/r/Thr
 &lt;/div&gt;</tw-passagedata>
 <tw-passagedata pid="21" name="Welcome" tags="" position="1137,45">This is a story that follows different paths through the juvenile justice system. Some of the events that occur are random! Make sure to play multiple times and try to explore all the different outcomes.
 
-If you come across a word you don&#39;t know, look it up in the &lt;a href=&quot;http://test.throughthesystem.com/glossary&quot;&gt;Glossary!&lt;/a&gt;
+If you come across a word you don&#39;t know, look it up in the &lt;a target=&quot;_blank&quot; href=&quot;http://test.throughthesystem.com/glossary&quot;&gt;Glossary!&lt;/a&gt;
 
 [[Let&#39;s go!-&gt;Start]]</tw-passagedata>
 <tw-passagedata pid="22" name="JQuery Include" tags="" position="704,8">requires jQuery</tw-passagedata>
@@ -262,6 +255,13 @@ If you&#39;ve played before, &lt;a href=&quot;https://www.surveymonkey.com/r/Thr
 
 [[She is sending you to a secure correctional facility.-&gt;Incarceration]]
 &lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="39" name="Skipped Probation" tags="" position="1508,653">(set: $skipped to true)You decide to skip school and have fun instead! Hopefully your probation officer doesn&#39;t notice...
+
+[[After a fun day, you head home-&gt;Probation Violation]]
+</tw-passagedata>
+<tw-passagedata pid="40" name="Probation Violation" tags="" position="1575,320">The next day, you get a call from your Probation Officer. They&#39;ve been calling your school to check your attendance and they found out you skipped class!
+
+[[You&#39;re going to spend the rest of your probation in detention-&gt;Violated Probation]]</tw-passagedata>
 </tw-storydata>
 
 
