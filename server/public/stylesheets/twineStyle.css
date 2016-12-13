@@ -6,8 +6,12 @@ tw-story{
     width: 75% !important;
 }
 
-.sceneText .btn{
+.btn{
     width: 100%;
     height: 4em;
     margin-bottom: 10px;
+}
+
+.btn tw-link{
+    color: white !important;
 }
